@@ -26,6 +26,7 @@ public class UsuariosDTO {
         if (usuariosentity != null && usuariosentity.getDepartamentoEntity() != null ) {
             //this.departamentodto = new UsuariosDTO(usuariosentity.getDepartamentoEntity());
         }
+
     }
 
     public UsuariosDTO() {}

@@ -2,6 +2,7 @@ package com.gerenciausuarios.gerenciausu.service;
 
 import com.gerenciausuarios.gerenciausu.dto.UsuariosDTO;
 import com.gerenciausuarios.gerenciausu.model.Usuarios;
+import com.gerenciausuarios.gerenciausu.model.exception.UsuarioNaoEncontradoException;
 import com.gerenciausuarios.gerenciausu.repository.UsuariosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,11 @@ public class UsuariosService {
     }
 
     public UsuariosDTO findById(Long id) {
-        return new UsuariosDTO(usuariosRepository.findById(id).get());
+        try {
+            return new UsuariosDTO(usuariosRepository.findById(id).get());
+        } catch (Exception e) {
+            throw new UsuarioNaoEncontradoException(id.toString());
+        }
     }
 
     public void create(UsuariosDTO usuariosDTO) {
@@ -29,13 +34,21 @@ public class UsuariosService {
     }
 
     public UsuariosDTO update(UsuariosDTO usuariosDTO) {
-        Usuarios usuarios = new Usuarios(usuariosDTO);
-        return new UsuariosDTO(usuariosRepository.save(usuarios));
+        try{
+            Usuarios usuarios = new Usuarios(usuariosDTO);
+            return new UsuariosDTO(usuariosRepository.save(usuarios));
+        } catch(Exception e) {
+            throw new UsuarioNaoEncontradoException(usuariosDTO.getId().toString());
+        }
     }
 
     public void delete(Long id) {
-        Usuarios usuarios = usuariosRepository.findById(id).get();
-        usuariosRepository.delete(usuarios);
+        try{
+            Usuarios usuarios = usuariosRepository.findById(id).get();
+            usuariosRepository.delete(usuarios);
+        } catch(Exception e) {
+            throw new UsuarioNaoEncontradoException(id.toString());
+        }
     }
 
 }

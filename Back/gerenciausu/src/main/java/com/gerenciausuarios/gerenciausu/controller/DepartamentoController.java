@@ -1,4 +1,4 @@
-package com.gerenciausuarios.gerenciausu.Controller;
+package com.gerenciausuarios.gerenciausu.controller;
 
 import com.gerenciausuarios.gerenciausu.dto.DepartamentoDTO;
 import com.gerenciausuarios.gerenciausu.interfaces.IDepartamento;

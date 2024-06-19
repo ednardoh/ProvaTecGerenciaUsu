@@ -11,7 +11,7 @@ import java.util.List;
 public interface IUsuarios {
 
     public List<UsuariosDTO> FindAll();
-    public UsuariosDTO findById(@PathVariable long id);
+    public UsuariosDTO findById(@PathVariable Long id);
     public void create(@RequestBody UsuariosDTO usuariosDTO);
     public UsuariosDTO update(@RequestBody UsuariosDTO usuariosDTO);
     public ResponseEntity<Void> delete(@PathVariable("id") Long id);

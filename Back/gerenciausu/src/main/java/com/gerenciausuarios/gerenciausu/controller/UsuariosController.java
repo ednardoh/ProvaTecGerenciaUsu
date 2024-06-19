@@ -1,4 +1,4 @@
-package com.gerenciausuarios.gerenciausu.Controller;
+package com.gerenciausuarios.gerenciausu.controller;
 
 import com.gerenciausuarios.gerenciausu.dto.UsuariosDTO;
 import com.gerenciausuarios.gerenciausu.interfaces.IUsuarios;
@@ -16,16 +16,16 @@ public class UsuariosController implements IUsuarios {
     private UsuariosService service;
     UsuariosController(UsuariosService usuariosService) { this.service = usuariosService; }
 
-
     @GetMapping
     public List<UsuariosDTO> FindAll() {
         return service.FindAll();
     }
 
     @GetMapping(path = {"/{id}"})
-    public UsuariosDTO findById(@PathVariable long id) {
+    public UsuariosDTO findById(@PathVariable Long id) {
         return service.findById(id);
     }
+
 
     @PostMapping
     public void create(@RequestBody UsuariosDTO usuariosDTO) {
